@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "commonjs",
+    "outDir": "./build",
+    "strict": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "importHelpers": true,
+    "allowJs": true,
+    "experimentalDecorators": true, // Due to failing types in aws ec2: https://github.com/RobinBuschmann/sequelize-typescript
+    "emitDecoratorMetadata": true // Due to failing types in aws ec2: https://github.com/RobinBuschmann/sequelize-typescript
+  },
+  "include": ["src/**/*.ts", "src/**/*.js"],
+  "exclude": ["node_modules"]
+}
