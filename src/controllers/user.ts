@@ -76,7 +76,6 @@ exports.getUserToConfirm = catchAsync(
     const existingUserToConfirm: User = await db.user.findOne({
       where: { registrationUUID, hasConfirmed: false },
     });
-    // console.log(existingUserToConfirm.toJSON());
 
     if (!existingUserToConfirm) {
       // TODO: send security email
@@ -87,8 +86,6 @@ exports.getUserToConfirm = catchAsync(
         }),
       );
     }
-
-    console.log('found ...eeeh...', existingUserToConfirm);
 
     res.status(200).send({
       email: existingUserToConfirm.email,
@@ -128,7 +125,6 @@ exports.confirmUser = catchAsync(
       JWT_SECRET_KEY,
     );
 
-    console.log('found', existingUserToConfirm);
     res.status(200).send({
       token: accessToken,
       email: existingUserToConfirm.email,

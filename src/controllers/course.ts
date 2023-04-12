@@ -110,7 +110,6 @@ exports.enrollStudents = catchAsync(
       if (student) {
         await course.addStudents(student); // FIX: TODO: can i just addStudentS and pass it an array?
         for (let j = 0; j < courseAbps.length; j++) {
-          console.log('gona do it for student', i);
           const abpEvaluation = await db.abpEvaluation.create({
             studentId: student.id,
             abpId: courseAbps[i].id,
