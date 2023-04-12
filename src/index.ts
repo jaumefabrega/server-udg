@@ -18,13 +18,13 @@ const router = require('./router');
 
 const {
   PORT = 3001,
-  CLIENT_PORT = 3000,
+  CLIENT_PORT = '3000',
   CLIENT_HOST = 'localhost',
   NODE_ENV,
 } = process.env;
 
 const corsConfig = {
-  origin: `http://${CLIENT_HOST}:${CLIENT_PORT}`,
+  origin: `https://${CLIENT_HOST}:${CLIENT_PORT}`,
   credentials: true,
 };
 
