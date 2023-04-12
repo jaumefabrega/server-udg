@@ -24,7 +24,7 @@ const {
 } = process.env;
 
 const corsConfig = {
-  origin: `https://${CLIENT_HOST}:${CLIENT_PORT}`,
+  origin: `https://${CLIENT_HOST}`,
   credentials: true,
 };
 
