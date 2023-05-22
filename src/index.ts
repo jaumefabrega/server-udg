@@ -18,7 +18,7 @@ const router = require('./router');
 
 const {
   PORT = 3001,
-  CLIENT_PORT = '3000',
+  CLIENT_PORT,
   CLIENT_HOST = 'localhost',
   NODE_ENV,
 } = process.env;
