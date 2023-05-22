@@ -23,8 +23,11 @@ const {
   NODE_ENV,
 } = process.env;
 
+const protocol = NODE_ENV === 'development' ? 'http' : 'https';
+const portPart = CLIENT_PORT ? `:${CLIENT_PORT}` : '';
+
 const corsConfig = {
-  origin: `https://${CLIENT_HOST}`,
+  origin: `${protocol}://${CLIENT_HOST}${portPart}`,
   credentials: true,
 };
 

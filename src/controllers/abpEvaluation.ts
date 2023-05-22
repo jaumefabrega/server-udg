@@ -31,6 +31,11 @@ exports.getEvaluations = catchAsync(
               model: db.abpEvaluation,
               where: { studentId: studentId },
             },
+
+            {
+              model: db.user,
+              as: 'teacher',
+            },
           ],
         },
         {
@@ -51,7 +56,11 @@ exports.getEvaluations = catchAsync(
     const abpEvaluations: any = [];
     jsonCourse.abps.forEach((abp: any) =>
       abp.abpEvaluations.forEach((evaluation: any) =>
-        abpEvaluations.push({ ...evaluation, teacherId: abp.teacherId }),
+        abpEvaluations.push({
+          ...evaluation,
+          teacherId: abp.teacherId,
+          teacherName: abp.teacher?.name,
+        }),
       ),
     );
 
