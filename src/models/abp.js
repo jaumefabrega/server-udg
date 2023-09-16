@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Abp.associate = (models) => {
     Abp.belongsTo(models.course);
-    Abp.belongsTo(models.user, { as: 'teacher' });
+    Abp.belongsToMany(models.user, { through: 'abpTeachers', as: 'teachers' });
     Abp.hasMany(models.abpEvaluation);
   };
   return Abp;

@@ -16,15 +16,6 @@ type UserToCreate = {
   dbUser?: any;
 };
 
-// const students = {
-//   harry: { name: 'Harry', email: 'harry@test.com' },
-//   ron: { name: 'Ron', email: 'ron@test.com' },
-//   hermione: { name: 'Hermione', email: 'hermione@test.com' },
-//   draco: { name: 'Draco', email: 'draco@test.com' },
-//   luna: { name: 'Luna', email: 'luna@test.com' },
-//   neville: { name: 'Neville', email: 'neville@test.com' },
-// };
-
 const students = {
   s1: { name: 'Juan José Albarracin Aucapiña', email: 's1@test.com' },
   s2: { name: 'Antoni Garçon Peyri', email: 's2@test.com' },
@@ -50,13 +41,6 @@ const students = {
   s22: { name: 'Judith Delgado Centurión', email: 's22@test.com' },
   s23: { name: 'Paulo César Caballero López', email: 's23@test.com' },
 };
-
-// const teachers = {
-//   dumbledore: { name: 'Dumbledore', email: 'dumbledore@test.com' },
-//   snape: { name: 'Snape', email: 'tnape@test.com' },
-//   ignasi: { name: 'Ignasi', email: 'ignasi@test.com' },
-//   minerva: { name: 'Minerva', email: 'minerva@test.com' },
-// };
 
 const teachers = {
   t1: { name: 'Anna Ribas', email: 't1@test.com' },
@@ -102,50 +86,17 @@ const users: UserToCreate[] = [
   })),
 ];
 
-// const courses = [
-//   {
-//     name: 'Biología',
-//     weeksDuration: 2,
-//     teachers: [teachers.dumbledore, teachers.ignasi], // FIX: TODO: Should check it's not bigger than weeksDuration
-//     students: [students.harry, students.ron, students.hermione],
-//   },
-//   {
-//     name: 'Electrónica',
-//     weeksDuration: 2,
-//     teachers: [teachers.ignasi, teachers.dumbledore],
-//     students: [
-//       students.hermione,
-//       students.harry,
-//       students.ron,
-//       students.draco,
-//       students.luna,
-//       students.neville,
-//     ],
-//   },
-//   {
-//     name: 'Química',
-//     weeksDuration: 4,
-//     teachers: [
-//       teachers.ignasi,
-//       teachers.ignasi,
-//       teachers.minerva,
-//       teachers.dumbledore,
-//     ],
-//     students: [
-//       students.hermione,
-//       students.harry,
-//       students.ron,
-//       students.draco,
-//       students.luna,
-//     ],
-//   },
-// ];
-
 const courses = [
   {
     name: 'Usos del agua - Grupo A',
     weeksDuration: 4,
-    teachers: [teachers.t1, teachers.t12, teachers.t21, teachers.t23],
+    order: 0,
+    teachers: [
+      [teachers.t1, teachers.t2],
+      [teachers.t12],
+      [teachers.t21],
+      [teachers.t23],
+    ],
     students: [
       students.s3,
       students.s5,
@@ -164,7 +115,13 @@ const courses = [
   {
     name: 'Medio Hídrico - Grupo A',
     weeksDuration: 4,
-    teachers: [teachers.t2, teachers.t2, teachers.t13, teachers.t13],
+    order: 1,
+    teachers: [
+      [teachers.t2],
+      [teachers.t2],
+      [teachers.t13],
+      [teachers.t13, teachers.t2],
+    ],
     students: [
       students.s3,
       students.s5,
@@ -183,7 +140,13 @@ const courses = [
   {
     name: 'Sistemas de tratamiento - Grupo A',
     weeksDuration: 4,
-    teachers: [teachers.t3, teachers.t14, teachers.t12, teachers.t24],
+    order: 2,
+    teachers: [
+      [teachers.t3],
+      [teachers.t14],
+      [teachers.t23, teachers.t12],
+      [teachers.t23, teachers.t24],
+    ],
     students: [
       students.s3,
       students.s5,
@@ -202,7 +165,11 @@ const courses = [
   {
     name: 'Gestión empresarial - Grupo A',
     weeksDuration: 2,
-    teachers: [teachers.t4, teachers.t4],
+    order: 3,
+    teachers: [
+      [teachers.t4, teachers.t2],
+      [teachers.t4, teachers.t3],
+    ],
     students: [
       students.s3,
       students.s5,
@@ -221,7 +188,13 @@ const courses = [
   {
     name: 'Usos del agua - Grupo B',
     weeksDuration: 4,
-    teachers: [teachers.t25, teachers.t22, teachers.t15, teachers.t15],
+    order: 4,
+    teachers: [
+      [teachers.t20, teachers.t25],
+      [teachers.t22],
+      [teachers.t15],
+      [teachers.t15],
+    ],
     students: [
       students.s1,
       students.s2,
@@ -239,7 +212,13 @@ const courses = [
   {
     name: 'Medio Hídrico - Grupo B',
     weeksDuration: 4,
-    teachers: [teachers.t26, teachers.t26, teachers.t29, teachers.t29],
+    order: 5,
+    teachers: [
+      [teachers.t26],
+      [teachers.t20, teachers.t26],
+      [teachers.t29],
+      [teachers.t29],
+    ],
     students: [
       students.s1,
       students.s2,
@@ -257,7 +236,13 @@ const courses = [
   {
     name: 'Sistemas de tratamiento - Grupo B',
     weeksDuration: 4,
-    teachers: [teachers.t27, teachers.t30, teachers.t15, teachers.t15],
+    order: 6,
+    teachers: [
+      [teachers.t26, teachers.t27],
+      [teachers.t30],
+      [teachers.t15],
+      [teachers.t15],
+    ],
     students: [
       students.s1,
       students.s2,
@@ -275,7 +260,11 @@ const courses = [
   {
     name: 'Gestión empresarial - Grupo B',
     weeksDuration: 2,
-    teachers: [teachers.t28, teachers.t28],
+    order: 7,
+    teachers: [
+      [teachers.t28, teachers.t10],
+      [teachers.t20, teachers.t28],
+    ],
     students: [
       students.s1,
       students.s2,
@@ -293,7 +282,8 @@ const courses = [
   {
     name: 'Calidad del agua',
     weeksDuration: 2,
-    teachers: [teachers.t6, teachers.t16],
+    order: 8,
+    teachers: [[teachers.t6, teachers.t16], [teachers.t16]],
     students: [
       students.s1,
       students.s2,
@@ -308,7 +298,8 @@ const courses = [
   {
     name: 'Sistemas fluviales',
     weeksDuration: 2,
-    teachers: [teachers.t7, teachers.t17],
+    order: 9,
+    teachers: [[teachers.t7], [teachers.t1, teachers.t17]],
     students: [
       students.s1,
       students.s2,
@@ -323,7 +314,8 @@ const courses = [
   {
     name: 'Sistemas leníticos',
     weeksDuration: 2,
-    teachers: [teachers.t8, teachers.t18],
+    order: 10,
+    teachers: [[teachers.t8, teachers.t1], [teachers.t18]],
     students: [
       students.s1,
       students.s2,
@@ -338,7 +330,8 @@ const courses = [
   {
     name: 'Infraestructuras del agua',
     weeksDuration: 2,
-    teachers: [teachers.t9, teachers.t19],
+    order: 11,
+    teachers: [[teachers.t9, teachers.t8], [teachers.t19]],
     students: [
       students.s3,
       students.s4,
@@ -359,7 +352,8 @@ const courses = [
   {
     name: 'TICs',
     weeksDuration: 2,
-    teachers: [teachers.t10, teachers.t20],
+    order: 12,
+    teachers: [[teachers.t10], [teachers.t20, teachers.t19]],
     students: [
       students.s3,
       students.s4,
@@ -380,7 +374,8 @@ const courses = [
   {
     name: 'Soluciones integradas',
     weeksDuration: 2,
-    teachers: [teachers.t11, teachers.t10],
+    order: 13,
+    teachers: [[teachers.t11], [teachers.t10, teachers.t11]],
     students: [
       students.s3,
       students.s4,
@@ -426,11 +421,34 @@ async function createData() {
     // Enroll students
     await dbCourse.addStudents(dbStudents);
 
-    const teacherNames = courseToCreate.teachers?.map((t) => t.name) || []; // FIX: TODO: [] shouldn't be necessary after TS
-    const dbTeachers = users
-      .filter((user) => teacherNames?.includes(user.name))
-      .map((user) => user.dbUser);
+    // const teacherNames =
+    //   courseToCreate.teachers?.map((abpTeachers) =>
+    //     abpTeachers.map((t) => t.name),
+    //   ) || []; // FIX: TODO: [] shouldn't be necessary after TS
 
+    const dbTeachersIds = []; // array where every element is an array of the abp db teachers
+    for (let j = 0; j < courseToCreate.teachers.length; j++) {
+      const abpTeachers = courseToCreate.teachers[j];
+      const dbAbpTeachers = [];
+      for (let k = 0; k < abpTeachers.length; k++) {
+        const dbTeacher = users.find(
+          (user) => user.name === abpTeachers[k].name,
+        );
+        dbAbpTeachers.push(dbTeacher);
+      }
+      dbTeachersIds.push(dbAbpTeachers.map((t) => t?.id));
+    }
+
+    // const dbTeachers = users
+    //   .filter((user) => teacherNames?.includes(user.name))
+    //   .map((user) => user.dbUser);
+
+    // const dbTeachers = teacherNames.map(
+    //   teachers.map((tName) => {
+    //     const theTeacher = users.find((user) => (user.name = tName));
+    //     return theTeacher?.dbUser;
+    //   }),
+    // );
     // Create ABPs
     for (let j = 0; j < courseToCreate.weeksDuration; j++) {
       const dbAbp = await db.abp.create({
@@ -438,12 +456,9 @@ async function createData() {
         courseId: dbCourse.id,
       });
 
-      // Assign teacher
-      const dbTeacher = dbTeachers[j];
-      if (dbTeacher) {
-        dbAbp.teacherId = dbTeacher.id;
-        await dbAbp.save();
-      }
+      // Assign teachers
+      const abpTeachers = dbTeachersIds[j];
+      await dbAbp.addTeachers(abpTeachers);
 
       // Create ABP Evaluations
       for (let k = 0; k < dbStudents.length; k++) {

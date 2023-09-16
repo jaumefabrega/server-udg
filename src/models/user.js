@@ -32,10 +32,12 @@ module.exports = (sequelize, DataTypes) => {
   });
   User.associate = (models) => {
     User.hasMany(models.abpEvaluation);
-    User.hasMany(models.abp, { as: 'teacher' });
     User.hasMany(models.courseScore);
     User.belongsToMany(models.course, {
       through: 'studentCourses',
+    });
+    User.belongsToMany(models.abp, {
+      through: 'abpTeachers',
     });
   };
   return User;

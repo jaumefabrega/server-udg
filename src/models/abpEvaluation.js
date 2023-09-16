@@ -2,16 +2,37 @@
 
 module.exports = (sequelize, DataTypes) => {
   const ApbEvaluation = sequelize.define('abpEvaluation', {
-    textEval1: {
+    asistencia: {
+      type: DataTypes.FLOAT,
+    },
+    interes: {
+      type: DataTypes.FLOAT,
+    },
+    informacion: {
+      type: DataTypes.FLOAT,
+    },
+    interaccion: {
+      type: DataTypes.FLOAT,
+    },
+    estudio: {
+      type: DataTypes.FLOAT,
+    },
+    fuentes: {
+      type: DataTypes.FLOAT,
+    },
+    analisis: {
+      type: DataTypes.FLOAT,
+    },
+    notaFinal: {
+      type: DataTypes.FLOAT,
+    },
+    chatTeacher1: {
       type: DataTypes.STRING,
     },
-    textEval2: {
+    chatStudent1: {
       type: DataTypes.STRING,
     },
-    textEval3: {
-      type: DataTypes.STRING,
-    },
-    studentResponse: {
+    chatTeacher2: {
       type: DataTypes.STRING,
     },
   });

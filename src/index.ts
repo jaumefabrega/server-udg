@@ -63,7 +63,7 @@ app.use(errorHandler);
 
 (async function () {
   try {
-    await db.sequelize.sync({ alter: true });
+    await db.sequelize.sync({ sync: true });
     app.listen(PORT, () =>
       console.log(
         `Server listening at http://localhost:${PORT} with env=${NODE_ENV}`,

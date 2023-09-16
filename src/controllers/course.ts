@@ -171,3 +171,29 @@ exports.getCourses = catchAsync(
     );
   },
 );
+
+exports.getCourseInfo = catchAsync(
+  async (req: Auth0Request, res: Response, next: NextFunction) => {
+    const { courseId } = req.query;
+
+    const course = await db.course.findByPk(courseId, {
+      plain: true,
+      include: [
+        {
+          model: db.abp,
+          include: [
+            {
+              model: db.user,
+              as: 'teachers',
+              through: { attributes: [] },
+              attributes: ['id', 'email', 'name'],
+            },
+          ],
+        },
+      ],
+    });
+
+    res.status(200);
+    return res.send(course);
+  },
+);

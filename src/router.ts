@@ -20,9 +20,30 @@ router.get('/api/get-user-to-confirm', user.getUserToConfirm);
 // Authenticated routes
 router.post('/api/logout', authMiddleware, user.logout);
 router.get('/api/courses', authMiddleware, course.getCourses);
+router.get('/api/course-info', authMiddleware, course.getCourseInfo);
 router.get('/api/students', authMiddleware, user.getStudents);
 router.get('/api/evaluations', authMiddleware, abpEvaluation.getEvaluations);
+router.get(
+  '/api/all-evaluations-abp',
+  authMiddleware,
+  abpEvaluation.getAllEvaluationsForAbp,
+);
+router.get(
+  '/api/all-evaluations-student',
+  authMiddleware,
+  abpEvaluation.getAllEvaluationsForStudent,
+);
 router.post('/api/evaluation', authMiddleware, abpEvaluation.postEvaluation);
+router.post(
+  '/api/evaluation-chats',
+  authMiddleware,
+  abpEvaluation.postEvaluationChats,
+);
+router.post(
+  '/api/evaluations-all',
+  authMiddleware,
+  abpEvaluation.postAllEvaluations,
+);
 router.post('/api/course-score', authMiddleware, courseScore.postCourseScore);
 
 // Admin routes (protected by admin password)
