@@ -2,13 +2,7 @@
 
 module.exports = (sequelize, DataTypes) => {
   const CourseScore = sequelize.define('courseScore', {
-    score1: {
-      type: DataTypes.FLOAT,
-    },
-    score2: {
-      type: DataTypes.FLOAT,
-    },
-    score3: {
+    finalScore: {
       type: DataTypes.FLOAT,
     },
   });
