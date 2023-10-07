@@ -27,13 +27,13 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.FLOAT,
     },
     chatTeacher1: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     chatStudent1: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
     chatTeacher2: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
     },
   });
   ApbEvaluation.associate = (models) => {

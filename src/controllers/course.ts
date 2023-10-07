@@ -105,14 +105,14 @@ exports.enrollStudents = catchAsync(
     });
     for (let i = 0; i < studentIds.length; i++) {
       const student = await db.user.findOne({
-        where: { [Op.and]: [{ id: studentIds[i] }, { hasConfirmed: true }] },
+        where: { [Op.and]: [{ id: studentIds[i] }, { hasConfirmed: false }] },
       });
       if (student) {
         await course.addStudents(student); // FIX: TODO: can i just addStudentS and pass it an array?
         for (let j = 0; j < courseAbps.length; j++) {
           const abpEvaluation = await db.abpEvaluation.create({
             studentId: student.id,
-            abpId: courseAbps[i].id,
+            abpId: courseAbps[j].id,
           });
         }
         await db.courseScore.create({
