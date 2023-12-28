@@ -22,7 +22,7 @@ const { JWT_SECRET_KEY, ADMIN_PASSWORD } = process.env;
 
 exports.createCourse = catchAsync(
   async (req: Auth0Request, res: Response, next: NextFunction) => {
-    const { name, weeksDuration, adminPassword } = req.body;
+    const { name, weeksDuration, adminPassword, order } = req.body;
 
     // FIX: todo: validate incoming request data (assertCourseIsValid)
     if (adminPassword !== ADMIN_PASSWORD) {
@@ -36,6 +36,7 @@ exports.createCourse = catchAsync(
     const course = await db.course.create({
       name,
       weeksDuration,
+      order,
     });
 
     for (let i = 0; i < weeksDuration; i++) {
@@ -68,9 +69,13 @@ exports.setCourseTeachers = catchAsync(
       order: [['order', 'ASC']],
     });
 
-    for (let i = 0; i < teacherIds || i < abps.length; i++) {
-      abps[i].teacherId = teacherIds[i]; // FIX: TODO: should first check that teacher exists?
-      await abps[i].save();
+    for (let i = 0; i < teacherIds.length || i < abps.length; i++) {
+      const teacher = await db.user.findOne({
+        where: { id: teacherIds[i] },
+      });
+      if (teacher) {
+        await abps[i].addTeachers(teacher);
+      }
     }
     res.sendStatus(201);
   },
@@ -105,7 +110,7 @@ exports.enrollStudents = catchAsync(
     });
     for (let i = 0; i < studentIds.length; i++) {
       const student = await db.user.findOne({
-        where: { [Op.and]: [{ id: studentIds[i] }, { hasConfirmed: false }] },
+        where: { id: studentIds[i] },
       });
       if (student) {
         await course.addStudents(student); // FIX: TODO: can i just addStudentS and pass it an array?
